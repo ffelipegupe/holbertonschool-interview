@@ -3,31 +3,35 @@
 from sys import stdin
 
 
+codes_dic = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0,
+            '405': 0, '500': 0}
 
-def logLecture():
-    nl = []
-    for line in stdin:
-        nl.append(list(line.rstrip("\n").split(" ")))
-        codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
-        if len(nl) == 10:
-            x = 0
-            ss = []
-            ctn = []
-            for j in range(len(nl)):
-                x = x + int(nl[j][8])
-                if(nl[j][7]) in codes:
-                    ss.append(nl[j][7])
-                    ss.sort()
-            
-            print("File size: {}".format(x))
-            
-            for i in range(len(nl)):
-                a = ss.count(ss[i])
-                ctn.append(a)
-                #print(ss[i], a)
-            
-            for key, value in dict(zip(ss, ctn)).items():
-                print(key + ': ' + str(value))
-        
+size = 0
 
-logLecture()
+def printing():
+    """ Function that prints logs """
+    print("File size: {}".format(size))
+    for key in sorted(codes_dic.keys()):
+        if codes_dic[key]:
+            print("{}: {}".format(key, codes_dic[key]))
+
+
+if __name__ == "__main__":
+    count = 0
+    try:
+        for line in stdin:
+            try:
+                data = line.split()
+                size += int(data[-1])
+                if data[-2] in codes_dic:
+                    codes_dic[data[-2]] += 1
+            except:
+                pass
+            if count == 9:
+                printing()
+                count -= 1
+            count += 1
+    except KeyboardInterrupt:
+        printing()
+        raise
+    printing()
