@@ -27,7 +27,7 @@ if __name__ == "__main__":
                 size += int(data[-1])
                 if data[-2] in codes_dic:
                     codes_dic[data[-2]] += 1
-            except Exception:
+            except:
                 pass
             if count == 9:
                 printing()
