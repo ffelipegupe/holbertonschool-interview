@@ -36,7 +36,7 @@ if __name__ == "__main__":
                 codes_dic[data[-2]] += 1
                 if count % 10 == 0:
                     printing()
-    except KeyboardInterrupt:
+    except Exception:
         pass
     finally:
         printing()
