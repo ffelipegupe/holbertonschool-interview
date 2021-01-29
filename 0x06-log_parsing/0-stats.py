@@ -32,10 +32,11 @@ if __name__ == "__main__":
             count += 1
             data = line.split()
             size += int(data[-1])
-            if data[-2] in codes_dic and isinstance(int(data[-2]), int):
-                codes_dic[data[-2]] += 1
-                if count % 10 == 0:
-                    printing()
+            if len(data) > 2:
+                    if data[-2] in codes_dic and isinstance(int(data[-2]), int):
+                            codes_dic[data[-2]] += 1
+                            if count % 10 == 0:
+                                    printing()
     except Exception:
         pass
     finally:
