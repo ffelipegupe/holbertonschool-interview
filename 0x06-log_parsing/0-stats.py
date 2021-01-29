@@ -3,10 +3,12 @@
 from sys import stdin
 
 
-codes_dic = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0,
+codes_dic = {
+            '200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0,
             '405': 0, '500': 0}
 
 size = 0
+
 
 def printing():
     """ Function that prints logs """
@@ -25,7 +27,7 @@ if __name__ == "__main__":
                 size += int(data[-1])
                 if data[-2] in codes_dic:
                     codes_dic[data[-2]] += 1
-            except:
+            except Exception:
                 pass
             if count == 9:
                 printing()
