@@ -31,7 +31,7 @@ if __name__ == "__main__":
                 pass
             if count == 9:
                 printing()
-                count -= 1
+                count = -1
             count += 1
     except KeyboardInterrupt:
         printing()
