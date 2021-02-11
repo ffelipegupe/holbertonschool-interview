@@ -1,24 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 #include "palindrome.h"
-
-/**
- * reversed - function that reverse a number
- *
- * @n: number to be reversed
- *
- * Return: the reversed number
- */
-int reversed(int n)
-{
-	int digit = (int)log10(n);
-
-	if (n == 0)
-		return (0);
-	return ((n % 10 * pow(10, digit)) + reversed(n / 10));
-}
-
 
 /**
  * is_palindrome - checks if a given unsigned integer is a palindrome.
@@ -29,9 +11,18 @@ int reversed(int n)
  */
 int is_palindrome(unsigned long n)
 {
-	if (n == (unsigned long)reversed(n))
+	unsigned long master = 0;
+	unsigned long reversed = 0;
+	unsigned long remainder = 0;
+
+	master = n;
+	while (n != 0)
 	{
-		return (1);
+		remainder = n % 10;
+		reversed = reversed * 10 + remainder;
+		n = n / 10;
 	}
+	if (master == reversed)
+		return (1);
 	return (0);
 }
