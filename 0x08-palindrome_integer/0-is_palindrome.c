@@ -13,9 +13,10 @@
 int reversed(int n)
 {
 	int digit = (int)log10(n);
+
 	if (n == 0)
-		return 0;
-       return ((n%10 * pow(10, digit)) + reversed(n/10));
+		return (0);
+	return ((n % 10 * pow(10, digit)) + reversed(n / 10));
 }
 
 
@@ -30,7 +31,7 @@ int is_palindrome(unsigned long n)
 {
 	if (n == (unsigned long)reversed(n))
 	{
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
