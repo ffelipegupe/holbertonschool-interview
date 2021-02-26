@@ -85,9 +85,9 @@ int slide_line(int *line, size_t size, int direction)
 	if (!line || !size)
 		return (0);
 	if (direction == 76)
-		go_left(line, size);
+		slide_left(line, size);
 	else if (direction == 82)
-		go_right(line, size);
+		slide_right(line, size);
 	else
 		return (0);
 	return (1);
