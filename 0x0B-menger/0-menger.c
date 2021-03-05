@@ -16,7 +16,7 @@ void menger(int level)
 	for (r = 0; r < n_level; r++)
 	{
 		for (c = 0; c < n_level; c++)
-			putchar(sponge(r, c));
+			putchar(helper(r, c));
 		putchar('\n');
 	}
 }
