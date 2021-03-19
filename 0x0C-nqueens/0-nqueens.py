@@ -1,45 +1,54 @@
 #!/usr/bin/python3
-"""N queens"""
+
+'N queens problem-N must be an integer greater or equal to 4'
+
 import sys
 
 
-def approve_placement(board, row, col):
-    """Determine if it's safe for the queen to assume position"""
-    for a in range(col):
-        if board[a] is row or abs(board[a] - row) is abs(a - col):
-            return False
-    return True
+def queens_potitions(Nq, row, queens):
 
+    for column in range(Nq):
+        clash = 0
 
-def Print_Board(board):
-    """Prints the solution and board"""
-    pos = []
-    board_size = len(board)
-    for row in range(board_size):
-        sub_array = [row, board[row]]
-        pos.append(sub_array)
-    print(pos)
+        for queen in queens:
 
+            if abs(column - queen[1]) == abs(row - queen[0]):
+                clash = 1
+                break
 
-def Place_Queen(board, col):
-    """Places the queens safely on the board"""
-    if col is len(board):
-        Print_Board(board)
-        return
-    for row in range(len(board)):
-        if approve_placement(board, row, col):
-            board[col] = row
-            Place_Queen(board, col + 1)
+            if column == queen[1]:
+                clash = 1
+                break
+
+        if clash == 0:
+            queens.append([row, column])
+
+            if row != Nq - 1:
+                queens_potitions(Nq, row + 1, queens)
+
+            else:
+                print(queens)
+
+            queens.pop()
 
 
 if __name__ == "__main__":
+    'receive console arguments and call function'
+
     if len(sys.argv) != 2:
-        print("Usage: nqueens N") or exit(1)
-    try:
-        n = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number") or exit(1)
-    if n < 4:
-        print("N must be at least 4") or exit(1)
-    board = [[0 for col in range(n)] for row in range(n)]
-    Place_Queen(board, 0)
+        print("Usage: nqueens N")
+        exit(1)
+
+    if sys.argv[1].isdigit() is False:
+        print("N must be a number")
+        exit(1)
+
+    Nq = int(sys.argv[1])
+
+    if Nq < 4:
+        print("N must be at least 4")
+        exit(1)
+
+    row = 0
+    queens = []
+    queens_potitions(Nq, row, queens)
