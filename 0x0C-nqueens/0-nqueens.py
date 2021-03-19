@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-N queens puzzle challenge
+Module that solves the N Queens puzzle
 '''
 from sys import argv, exit
 
@@ -17,27 +17,27 @@ if __name__ == "__main__":
         print('N must be at least 4')
         exit(1)
 
-    table = []
+    solution = []
 
-    def queens(row, n, table):
+    def solve_queens(row, n, solution):
         if (row == n):
-            print(table)
+            print(solution)
         else:
-            for i in range(n):
-                placement = [row, i]
-                if validation(table, placement):
-                    table.append(placement)
-                    queens(row + 1, n, table)
-                    table.remove(placement)
+            for col in range(n):
+                placement = [row, col]
+                if valid_placement(solution, placement):
+                    solution.append(placement)
+                    solve_queens(row + 1, n, solution)
+                    solution.remove(placement)
 
-    def validation(table, placement):
-        for q in table:
-            if q[1] == placement[1]:
+    def valid_placement(solution, placement):
+        for queen in solution:
+            if queen[1] == placement[1]:
                 return False
-            if (q[0] + q[1]) == (placement[0] + placement[1]):
+            if (queen[0] + queen[1]) == (placement[0] + placement[1]):
                 return False
-            if (q[0] - q[1]) == (placement[0] - placement[1]):
+            if (queen[0] - queen[1]) == (placement[0] - placement[1]):
                 return False
         return True
 
-    queens(0, n, table)
+    solve_queens(0, n, solution)
