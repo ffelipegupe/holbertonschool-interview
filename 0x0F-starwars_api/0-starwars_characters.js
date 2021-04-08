@@ -5,6 +5,10 @@ const request = require('request');
 
 const url = 'https://swapi-api.hbtn.io/api/films/' + MovieId + '/';
 
+if (process.argv.length != 3) {
+    return;
+}
+
 request(url, function (err, res, body) {
   if (err) {
     console.log(err);
