@@ -6,14 +6,16 @@ def makeChange(coins, total):
     """ Function to determine the fewest number of coins """
     if total == 0:
         return 0
-    coins.sort()
-    res = 0
-    for i in range(0, len(coins)):
-        if coins[i] <= total:
-            total -= coins[i]
-            res += 1
-        elif coins[i] > total:
-            coins.pop()
-            
-            print(total)
-    return res
+    coins.sort(reverse=True)
+    sum = 0
+    i = 0
+    c = 0
+    num_coins = len(coins)
+    while sum < total and i < num_coins:
+        while coins[i] <= total - sum:
+            sum += coins[i]
+            c += 1
+            if sum == total:
+                return c
+        i += 1
+    return -1
