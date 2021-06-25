@@ -17,8 +17,3 @@ def makeChange(coins, total):
             
             print(total)
     return res
-            
-
-
-#print(makeChange([1, 2, 25], 37))
-print(makeChange([1, 2, 25], 37))
